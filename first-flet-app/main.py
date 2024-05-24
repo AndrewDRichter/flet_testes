@@ -2,7 +2,8 @@ import flet as ft
 
 
 def main(page: ft.Page):
-
+    page.title = "Aplicativo"
+    page.bgcolor = "brown"
     #lista_tarefas = []
 
     def altera_contador(e):
@@ -38,7 +39,7 @@ def main(page: ft.Page):
     txt_contador = ft.TextField(value=0, width=50, input_filter=ft.NumbersOnlyInputFilter(), fill_color="black")
     btn_mais = ft.ElevatedButton("+", on_click=altera_contador, bgcolor="green")
     
-    page.add(ft.Row(
+    page.add(ft.Row(alignment=ft.MainAxisAlignment.CENTER,
         controls=[btn_menos,
                   txt_contador,
                   btn_mais]
