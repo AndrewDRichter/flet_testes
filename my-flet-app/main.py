@@ -9,14 +9,18 @@ def main(page: ft.Page):
 
     txt_volume_geral = ft.Text(value=50)
 
-    contador = 0
-
     def altera_volume(e):
         txt_volume_geral.value = f"{int(e.control.value)}"
         txt_volume_geral.update()
 
     def altera_contador(e):
-        
+        if e.control.text == "+":
+            print("+")
+            txt_contador.value += 1
+        else:
+            print("-")
+            txt_contador.value -= 1
+        txt_contador.update()
 
     page.add(txt_volume_geral, ft.Slider(min=0, max=100, divisions=20, label="Volume Geral", width=300, on_change=altera_volume, disabled=False, value=txt_volume_geral.value,))
 
@@ -28,9 +32,21 @@ def main(page: ft.Page):
             ]
         )
     )
-    btn_menos = ft.TextButton("+", on_click=altera_contador)
-    txt_contador
-    btn_mais
+    btn_menos = ft.TextButton(text="+", on_click=altera_contador)
+    txt_contador = ft.Text(value=0)
+    btn_mais = ft.TextButton(text="-", on_click=altera_contador)
+    page.add(
+        ft.Row(
+            controls=[
+                btn_menos,
+                txt_contador,
+                btn_mais
+            ],
+            height=200,
+            width=500,
+            alignment=200
+        )
+    )
 
 
 
