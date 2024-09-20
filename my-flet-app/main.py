@@ -21,7 +21,7 @@ def main(page: ft.Page):
     btn_mais = ft.TextButton(text="+", on_click=altera_contador)
     txt_contador = ft.Text(value=0)
     btn_menos = ft.TextButton(text="-", on_click=altera_contador)
-    lv = ft.ListView(height=200, spacing=10)
+    lv = ft.ListView(height=500, spacing=10)
     page.add(
         ft.Row(
             alignment= ft.MainAxisAlignment.CENTER,

@@ -17,6 +17,20 @@ def main(page: ft.Page):
     #cursor.execute("INSERT INTO tbl_teste (nome, ativo) VALUES (?, ?)", ("Andrew", 1))
     #banco.commit()
         
+    ### UTILS
+    # def rem_espaco_duplo_final(e):
+    #     valor = e.control.value.replace("  ", " ")
+    #     nova_tarefa.value = valor
+    #     nova_tarefa.update()
+    #     if valor[-1] == " ":
+    #         valor[-1] = ""
+    #     print(valor + "->" + valor[-1])
+
+
+
+    def adiciona_usuario(e):
+        print(not tf_nome.value or tf_nome.value)
+
     def carrega_dados_teste():
         cursor.execute("SELECT * FROM tbl_teste")
         slct_results = cursor.fetchall()
@@ -36,48 +50,15 @@ def main(page: ft.Page):
                 ft.Text(ativo),
             ]))
         lv_teste.update()
-    
-    def rem_espaco_duplo(e):
-        valor = e.control.value.replace("  ", " ")
-        nova_tarefa.value = valor
-        nova_tarefa.update()
-        if valor[-1] == " ":
-            valor[-1] = ""
-        print(valor + "->" + valor[-1])
-    
-    def lista_controls(e):
-        for i in page.controls:
-            if type(i) == ft.Row:
-                for j in i.controls:
-                    print(j)
-            else:
-                print(i)
-    
-    def add_tarefa(e):
-        if nova_tarefa.value == "":
-            exit
-        else:
-            cb_tarefa = ft.Checkbox(label=nova_tarefa.value)
-            btn_eliminar = ft.ElevatedButton("Excluir", data=nova_tarefa.value, on_click=rem_tarefa)
-            lv_tarefas.controls.append(ft.Row(controls=[
-                cb_tarefa,
-                btn_eliminar
-            ]))
-            nova_tarefa.value = ""
-            nova_tarefa.focus()
-            nova_tarefa.update()
-            lv_tarefas.update()
-    
-    def rem_tarefa(e):
-        print(e.control)
-    
-    nova_tarefa = ft.TextField(hint_text="O que há para ser feito?", width=400, content_padding=10, on_change=rem_espaco_duplo)
-    page.add(ft.Row([nova_tarefa, ft.ElevatedButton("Adicionar", on_click=add_tarefa)]))
 
-    #page.add(ft.ElevatedButton("?", on_click=lista_controls))
-    
-    lv_tarefas = ft.ListView(height=100, spacing=0, auto_scroll=True)
-    page.add(lv_tarefas)
+
+
+    tf_nome = ft.TextField(hint_text="Nome")
+    btn_adicionar = ft.ElevatedButton("Adicionar", on_click=adiciona_usuario)
+    page.add(ft.Row(controls=[
+        tf_nome,
+        btn_adicionar
+    ]))
 
     lv_teste = ft.ListView(height=200, spacing=0, auto_scroll=True)
     page.add(lv_teste)
@@ -86,6 +67,49 @@ def main(page: ft.Page):
 
 
 ft.app(main)
+    
+    # def rem_espaco_duplo_final(e):
+    #     valor = e.control.value.replace("  ", " ")
+    #     nova_tarefa.value = valor
+    #     nova_tarefa.update()
+    #     if valor[-1] == " ":
+    #         valor[-1] = ""
+    #     print(valor + "->" + valor[-1])
+    
+    # def lista_controls(e):
+    #     for i in page.controls:
+    #         if type(i) == ft.Row:
+    #             for j in i.controls:
+    #                 print(j)
+    #         else:
+    #             print(i)
+    
+    # def add_tarefa(e):
+    #     if nova_tarefa.value == "":
+    #         exit
+    #     else:
+    #         cb_tarefa = ft.Checkbox(label=nova_tarefa.value)
+    #         btn_eliminar = ft.ElevatedButton("Excluir", data=nova_tarefa.value, on_click=rem_tarefa)
+    #         lv_tarefas.controls.append(ft.Row(controls=[
+    #             cb_tarefa,
+    #             btn_eliminar
+    #         ]))
+    #         nova_tarefa.value = ""
+    #         nova_tarefa.focus()
+    #         nova_tarefa.update()
+    #         lv_tarefas.update()
+    
+    # def rem_tarefa(e):
+    #     print(e.control)
+    
+    # nova_tarefa = ft.TextField(hint_text="O que há para ser feito?", width=400, content_padding=10, on_change=rem_espaco_duplo_final)
+    # page.add(ft.Row([nova_tarefa, ft.ElevatedButton("Adicionar", on_click=add_tarefa)]))
+
+    #page.add(ft.ElevatedButton("?", on_click=lista_controls))
+    
+    # lv_tarefas = ft.ListView(height=100, spacing=0, auto_scroll=True)
+    # page.add(lv_tarefas)
+
     # def altera_contador(e):
     #     if e.control.text == "-":
     #         txt_contador.value = int(txt_contador.value) - 1
